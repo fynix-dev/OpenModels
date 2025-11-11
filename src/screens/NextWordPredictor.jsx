@@ -6,7 +6,16 @@ const NextWordPredictor = () => {
   const [data, setData] = useState([]);
   const [predicting, setPredicting] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [predictedWords, setPredictedWords] = useState('Hello');
   const colors = [['#5cdb48', '#72f55d'], ['#f2e635', '#faef52'], ['#eb5949', '#f56858']];
+
+  const wordsToPredict = 1;
+
+  const getOnlyPredictedWords = (text) => {
+    const words = text.split(' ');
+    const res = words.slice(words.length - wordsToPredict).join(' ');
+    setPredictedWords(res);
+  }
 
   const predictNextWord = async(inputText) => {
     setData([]);
@@ -19,12 +28,14 @@ const NextWordPredictor = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: inputText,
-          words_to_predict: 2,
+          words_to_predict: wordsToPredict,
         }),
       });
 
     const resJson = await res.json();
-    setData(resJson)
+    setData(resJson);
+    getOnlyPredictedWords(resJson.predicted_text);
+
     setPredicting(false);
     setLoading(false);
   }
@@ -43,7 +54,7 @@ const NextWordPredictor = () => {
             </div>
           </div>
 
-          <div className="w-full flex justify-center md:flex-row flex-col items-center gap-[8px] p-[12px]">
+          <div className="w-full h-full flex justify-center md:flex-row flex-col items-stretch gap-[8px] p-[12px]">
             {!predicting && data.length === 0 && 
               <p className="w-full text-center text-wrap font-medium text-gray-500 text-[16px]">
                 Enter a <span className="text-[20px] font-bold text-black">sentence</span> to <span className="text-[20px] font-bold text-black">predict</span> the next <span className="text-[20px] font-bold text-black">words</span>
@@ -53,27 +64,36 @@ const NextWordPredictor = () => {
             {loading &&
               <p className="w-full text-center text-wrap font-medium text-[13px] text-gray-500">Predicting next words...</p>
             }
-            <div className="flex-1 flex items-center text-[20px]">
-              <p className="w-full text-center text-wrap font-bold">{data.predicted_text}</p>
+            <div className="flex-1 h-full flex items-start justify-center flex-col">
+              <div className="w-full h-full flex self-stretch flex-col">
+                {data.length !== 0 && <p className="w-full text-center text-wrap font-bold text-[16px] mb-[8px]">Predicted Word</p>}
+                {data.length !== 0 && <p className="w-full text-center text-wrap font-bold text-[20px]">{predictedWords}</p>}
+                {data.length !== 0 && <p className="w-full text-center text-wrap font-medium text-gray-500 text-[13px]">{data.predicted_text}</p>}
+              </div>
+
+              
             </div>
 
-            <div className="flex-1 flex flex-wrap md:flex-nowrap md:flex-row gap-[8px]">
-              { data.predictions?.map((item, i) => (
-                <div key={i} className="border-1 border-gray-300 rounded-[8px] p-[8px] flex flex-col items-center justify-around gap-[12px] flex-1">
-                  {
-                    item.top_predictions.map((pred, j) => (
-                      <div 
-                        key={j} 
-                        className="p-[4px] rounded-[8px] text-[12px] text-nowrap w-full text-center"
-                        style={{ background: `linear-gradient(90deg, ${colors[j][0]} 0%, ${colors[j][1]} 100%)` }}
-                        >
-                          <span className="text-[12px]">{pred.word}</span> - <span className="font-bold text-[14px]">{pred.probability}%</span>
-                        </div>
-                    ))
-                  }
-                </div>
-              ))
-              }
+            <div className="flex-1 ">
+              {data.length !== 0 && <p className="w-full text-center text-wrap font-bold text-[16px]">Prediction Details</p>}
+              <div className="flex flex-wrap md:flex-nowrap md:flex-row gap-[8px]">
+                { data.predictions?.map((item, i) => (
+                  <div key={i} className="border-1 border-gray-300 rounded-[8px] p-[8px] flex flex-col items-center justify-around gap-[12px] flex-1">
+                    {
+                      item.top_predictions.map((pred, j) => (
+                        <div 
+                          key={j} 
+                          className="p-[4px] rounded-[8px] text-[12px] text-nowrap w-full text-center"
+                          style={{ background: `linear-gradient(90deg, ${colors[j][0]} 0%, ${colors[j][1]} 100%)` }}
+                          >
+                            <span className="text-[12px]">{pred.word}</span> - <span className="font-bold text-[14px]">{pred.probability}%</span>
+                          </div>
+                      ))
+                    }
+                  </div>
+                  ))
+                }
+              </div>
             </div>
 
           </div>
