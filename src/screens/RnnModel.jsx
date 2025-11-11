@@ -37,7 +37,7 @@ const RnnModel = () => {
   const predict = async(inputText) => {
     const labels = ['Negative', 'Positive']
     const input = prepareInput(inputText)
-    const model = await tf.loadLayersModel('/models/model_rnn/model.json');
+    const model = await tf.loadLayersModel(process.env.PUBLIC_URL + '/models/model_rnn/model.json');
     const inputTensor = tf.tensor([input], [1, 100], 'int32');
     const res = model.predict(inputTensor);
     const resArray = await res.array();

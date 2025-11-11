@@ -19,7 +19,7 @@ const NextWordPredictor = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           text: inputText,
-          words_to_predict: 3,
+          words_to_predict: 2,
         }),
       });
 
