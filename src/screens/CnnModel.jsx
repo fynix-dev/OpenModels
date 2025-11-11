@@ -15,7 +15,7 @@ const CnnModel = () => {
     const normalizedImage = resizedImage.div(255.0);
     const finalImageTensor = normalizedImage.expandDims(0);
 
-    const model = await tf.loadLayersModel(process.env.PUBLIC_URL + '/models/model_cnn/model.json');
+    const model = await tf.loadLayersModel('https://fynix-dev.github.io/OpenModels/models/model_cnn/model.json');
     const prediction = model.predict(finalImageTensor);
     const resArray = await prediction.array();
     const res = resArray[0].indexOf(Math.max(...resArray[0])) //tf.argMax(prediction, -1).dataSync()[0];
