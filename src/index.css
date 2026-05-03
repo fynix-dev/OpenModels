@@ -1,20 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
 @import "tailwindcss";
 
-*{
-  font-family: 'Bricolage Grotesque';
+* {
+    font-family: "Bricolage Grotesque";
 }
 
-@theme{
-  --color-bg: #ede7e6;
+@theme {
+    --color-bg: #ede7e6;
 }
 
-@layer utilities{
-  .h1{
-    @apply w-full text-center text-[28px] font-bold
-  }
+@layer utilities {
+    .h1 {
+        @apply w-full text-center text-[28px] font-bold;
+    }
 
-  .container{
-    @apply w-fit min-w-[45%] md:max-w-[70%] h-auto border-2 border-black rounded-[8px] p-[20px] flex flex-col items-center gap-[16px]
-  }
+    .container {
+        @apply h-auto border-2 border-black rounded-lg p-3 flex flex-col items-center gap-4;
+    }
 }

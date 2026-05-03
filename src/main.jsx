@@ -1,17 +1,19 @@
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
 import { HashRouter, Routes, Route } from "react-router-dom";
-import CnnModel from './screens/CNNModel.jsx';
-import RnnModel from './screens/RnnModel.jsx';
-import NextWordPredictor from './screens/NextWordPredictor.jsx';
+import CnnModel from "./screens/CnnModel.jsx";
+import RnnModel from "./screens/RnnModel.jsx";
+import ModelList from "./screens/ModelList.jsx";
+import NextWordPredictor from "./screens/NextWordPredictor.jsx";
 
-createRoot(document.getElementById('root')).render(
+createRoot(document.getElementById("root")).render(
   <HashRouter>
     <Routes>
-      <Route path='/cnn' element={<CnnModel />} />
-      <Route path='/' element={<RnnModel />} />
-      <Route path='/next-word-predictor' element={<NextWordPredictor />} />
+      <Route path="/cnn" element={<CnnModel />} />
+      <Route path="/rnn" element={<RnnModel />} />
+      <Route path="/next-word-predictor" element={<NextWordPredictor />} />
+      <Route path="/" element={<ModelList />} />
     </Routes>
-  </HashRouter>
-)
+  </HashRouter>,
+);

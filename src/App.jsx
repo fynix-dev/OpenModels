@@ -1,13 +1,13 @@
-import CnnModel from "./screens/CNNModel"
-import NextWordPredictor from "./screens/NextWordPredictor"
-import RnnModel from "./screens/RnnModel"
+import CnnModel from "./screens/CnnModel.jsx";
+import NextWordPredictor from "./screens/NextWordPredictor";
+import RnnModel from "./screens/RnnModel";
 
 const App = () => {
   return (
     <main>
-      <NextWordPredictor  />
+      <NextWordPredictor />
     </main>
-  )
-}
+  );
+};
 
-export default App
+export default App;
