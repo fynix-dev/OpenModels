@@ -12,8 +12,8 @@ createRoot(document.getElementById("root")).render(
     <Routes>
       <Route path="/cnn" element={<CnnModel />} />
       <Route path="/rnn" element={<RnnModel />} />
-      <Route path="/" element={<NextWordPredictor />} />
-      <Route path="/next-word-predictor" element={<ModelList />} />
+      <Route path="/next-word-predictor" element={<NextWordPredictor />} />
+      <Route path="/" element={<ModelList />} />
     </Routes>
   </HashRouter>,
 );
