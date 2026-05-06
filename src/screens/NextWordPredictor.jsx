@@ -126,7 +126,7 @@ const NextWordPredictor = () => {
                         key={j}
                         className="p-[4px] rounded-[8px] text-[12px] text-nowrap w-full text-center"
                         style={{
-                          background: `linear-gradient(90deg, ${colors[j][0]} 0%, ${colors[j][1]} 100%)`,
+                          background: `linear-gradient(90deg, ${colors[j][0]} 10%, ${colors[j][1]} 100%)`,
                         }}
                       >
                         <span className="text-[12px]">{pred.word}</span> -{" "}

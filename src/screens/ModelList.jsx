@@ -35,7 +35,7 @@ const ModelList = () => {
       name: "Spam message detector",
       description:
         "A model that can classify the message into SPAM or HAM. Built using Natural Language Processing(NLP) with LSTM layer. (Comming Soon)",
-      nav: "/", // Note: You might want to update this to a unique path
+      nav: "/spam-ham-predictor", // Note: You might want to update this to a unique path
       size: 3.2,
       version: 1.0,
     },
